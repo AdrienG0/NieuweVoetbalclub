@@ -30,4 +30,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/admin/users/{user}/role', [UserManagementController::class, 'updateRole'])->name('admin.users.updateRole');
 });
 
+Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
+
 require __DIR__.'/auth.php';
