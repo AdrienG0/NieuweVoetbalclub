@@ -36,6 +36,9 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        // Log debuginformatie(test)
+        \Log::info('Update profiel gestart', $request->all());
+
         $user = $request->user();
 
         // Update de basisgegevens
@@ -51,6 +54,8 @@ class ProfileController extends Controller
 
         // Sla de wijzigingen op in de database
         $user->save();
+
+        \Log::info('Profiel succesvol bijgewerkt', $user->toArray());
 
         // Redirect naar het profielbewerken met een succesbericht
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
