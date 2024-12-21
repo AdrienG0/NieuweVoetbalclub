@@ -39,6 +39,7 @@ class ProfileController extends Controller
         // Log debuginformatie(test)
         \Log::info('Profiel update aangeroepen'); // Controleer of dit wordt gelogd
 
+        \Log::info('Ontvangen request data:', $request->all());
         $user = $request->user();
 
         // Update de basisgegevens
