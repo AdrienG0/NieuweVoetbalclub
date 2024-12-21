@@ -8,6 +8,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                @if (session('status') === 'profile-updated')
+                    <div class="mb-4 p-4 bg-green-100 text-green-800 rounded-md">
+                        Profiel succesvol bijgewerkt!
+                    </div>
+                @endif
+
                 <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -32,7 +38,11 @@
                         <input type="file" name="profile_picture" id="profile_picture" class="mt-1 block w-full">
                     </div>
 
-                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md">Opslaan</button>
+                    <div class="flex justify-end">
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Opslaan
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
