@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\Admin\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,5 +36,21 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/users', [UserManagementController::class, 'index'])->name('admin.users.index');
     Route::post('/admin/users/{user}/role', [UserManagementController::class, 'updateRole'])->name('admin.users.updateRole');
 });
+
+
+Route::get('/db-test', function () {
+    try {
+        \DB::connection()->getPdo();
+        return 'Database connection is working!';
+    } catch (\Exception $e) {
+        return 'Could not connect to the database. Error: ' . $e->getMessage();
+    }
+});
+
+Route::get('/test-logging', function () {
+    \Log::info('Test logging werkt!');
+    return 'Logging getest!';
+});
+
 
 require __DIR__.'/auth.php';

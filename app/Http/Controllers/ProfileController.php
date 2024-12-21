@@ -27,14 +27,11 @@ class ProfileController extends Controller
 
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        try{
         $user = $request->user();
 
         // Debugging logs om te controleren wat er wordt ontvangen
-        Log::info('Ontvangen gegevens voor profielupdate:', [
-            'username' => $request->input('username'),
-            'birthdate' => $request->input('birthdate'),
-            'about_me' => $request->input('about_me'),
-        ]);
+        \Log::info('Ontvangen gegevens voor update:', $request->all());
 
         // Update velden
         $user->username = $request->input('username');
@@ -51,12 +48,13 @@ class ProfileController extends Controller
         $user->save();
 
         // Log succesvolle update
-        Log::info('Profiel succesvol bijgewerkt voor gebruiker:', [
-            'id' => $user->id,
-            'username' => $user->username,
-        ]);
+        \Log::info('Gebruiker bijgewerkt:', $user->toArray());
 
         // Redirect met status
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }catch (\Throwable $e) {
+        \Log::error('Fout tijdens profielupdate:', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
+        return Redirect::route('profile.edit')->with('status', 'error-updating-profile');
+    }
     }
 }
