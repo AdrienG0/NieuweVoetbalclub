@@ -79,3 +79,61 @@ Dit project is een dynamische website gebouwd met Laravel 11, ontworpen om te vo
    - GitHub repository gebruikt.
    - Regelmatige commits met duidelijke commit messages.
    - `vendor` en `node_modules` toegevoegd aan `.gitignore`.
+
+## Installatiehandleiding
+
+1. Clone de repository:
+   ```bash
+   git clone <repository-url>
+   cd NieuweVoetbalclub
+   ```
+
+2. Installeer afhankelijkheden:
+   ```bash
+   composer install
+   npm install
+   npm run build
+   ```
+
+3. Kopieer het `.env.example` bestand naar `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+4. Genereer een nieuwe applicatiesleutel:
+   ```bash
+   php artisan key:generate
+   ```
+
+5. Configureer de database in `.env`:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=voetbalclub_db
+   DB_USERNAME=root
+   DB_PASSWORD=1234
+   ```
+
+6. Voer migraties en seeders uit:
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
+
+7. Start de ontwikkelingsserver:
+   ```bash
+   php artisan serve
+   ```
+
+8. Bezoek de website op [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+## Bronvermelding
+- Laravel documentatie: [https://laravel.com/docs](https://laravel.com/docs)
+- Stack Overflow: [https://stackoverflow.com](https://stackoverflow.com)
+- Tutorials en voorbeelden van officiële Laravel bronnen.
+
+## Belangrijke opmerkingen
+- Alle gebruikte code en implementaties zijn zorgvuldig begrepen en aangepast aan de projectvereisten.
+- Voor eventuele vragen of problemen, neem contact op via de GitHub repository.
+
+---
