@@ -37,7 +37,7 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         // Log debuginformatie(test)
-        \Log::info('Update profiel gestart', $request->all());
+        \Log::info('Profiel update aangeroepen'); // Controleer of dit wordt gelogd
 
         $user = $request->user();
 
@@ -55,7 +55,7 @@ class ProfileController extends Controller
         // Sla de wijzigingen op in de database
         $user->save();
 
-        \Log::info('Profiel succesvol bijgewerkt', $user->toArray());
+        \Log::info('Profiel opgeslagen in database', $user->toArray()); // Controleer of dit wordt gelogd
 
         // Redirect naar het profielbewerken met een succesbericht
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
