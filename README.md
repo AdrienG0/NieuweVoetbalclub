@@ -69,7 +69,7 @@ Dit project is een dynamische website gebouwd met Laravel 11, ontworpen om te vo
    - Standaard Laravel authenticatie (login, registratie, wachtwoord reset).
    - Eén standaard admin:
      - Gebruikersnaam: admin
-     - E-mail: admin@ehb.be
+     - E-mail: admin@voetbalclub.com
      - Wachtwoord: Password!321
 
 7. **Layout**

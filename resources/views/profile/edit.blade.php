@@ -39,9 +39,7 @@
                     </div>
 
                     <div class="flex justify-end">
-                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                            Opslaan
-                        </button>
+                    <button type="submit" class="btn-save">Opslaan</button>
                     </div>
                 </form>
             </div>
