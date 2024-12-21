@@ -11,9 +11,6 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Toon de profielpagina van een gebruiker.
-     */
     public function show(Request $request): View
     {
         return view('profile.show', [
@@ -21,9 +18,6 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Toon het formulier om het profiel van een gebruiker aan te passen.
-     */
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -31,55 +25,24 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Werk de profielgegevens van de gebruiker bij.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        // Log debuginformatie(test)
-        \Log::info('Profiel update aangeroepen'); // Controleer of dit wordt gelogd
-
-        \Log::info('Ontvangen request data:', $request->all());
         $user = $request->user();
 
-        // Update de basisgegevens
+        // Log ontvangen data
+        \Log::info('Ontvangen gegevens voor profielupdate:', $request->all());
+
         $user->username = $request->input('username');
         $user->birthdate = $request->input('birthdate');
         $user->about_me = $request->input('about_me');
 
-        // Upload en sla de profielfoto op als deze is geüpload
         if ($request->hasFile('profile_picture')) {
             $path = $request->file('profile_picture')->store('profile_pictures', 'public');
             $user->profile_picture = $path;
         }
 
-        // Sla de wijzigingen op in de database
         $user->save();
 
-        \Log::info('Profiel opgeslagen in database', $user->toArray()); // Controleer of dit wordt gelogd
-
-        // Redirect naar het profielbewerken met een succesbericht
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
-
-    /**
-     * Verwijder het account van de gebruiker.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
     }
 }
