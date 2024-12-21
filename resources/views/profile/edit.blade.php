@@ -16,7 +16,7 @@
 
                 <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PATCH')
+                    @method('PATCH') {{-- Zorg dat dit overeenkomt met je routes --}}
 
                     <div class="mb-4">
                         <label for="username" class="block text-sm font-medium text-gray-700">Gebruikersnaam</label>
