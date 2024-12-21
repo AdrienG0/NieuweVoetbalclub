@@ -14,7 +14,13 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    
+    public function show(User $user): View
+    {
+        return view('profile.show', compact('user'));
+    } 
+
+     public function edit(Request $request): View
     {
         return view('profile.edit', [
             'user' => $request->user(),
@@ -26,10 +32,24 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        $user = $request->user();
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+        }
+
+        $validated = $request->validated();
+
+        if ($request->hasFile('profile_picture')) {
+            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+            $validated['profile_picture'] = $path;
+        }
+
+        $user->fill($validated);
+
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
         $request->user()->save();
