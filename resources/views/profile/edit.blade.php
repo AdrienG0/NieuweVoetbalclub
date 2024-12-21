@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 @if (session('status') === 'profile-updated')
-                    <div class="mb-4 p-4 bg-green-100 text-green-800 rounded-md">
+                    <div class="alert alert-success">
                         Profiel succesvol bijgewerkt!
                     </div>
                 @endif
