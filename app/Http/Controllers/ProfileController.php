@@ -12,15 +12,19 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
     /**
-     * Display the user's profile form.
+     * Toon de profielpagina van een gebruiker.
      */
-    
-    public function show(User $user): View
+    public function show(Request $request): View
     {
-        return view('profile.show', compact('user'));
-    } 
+        return view('profile.show', [
+            'user' => $request->user(),
+        ]);
+    }
 
-     public function edit(Request $request): View
+    /**
+     * Toon het formulier om het profiel van een gebruiker aan te passen.
+     */
+    public function edit(Request $request): View
     {
         return view('profile.edit', [
             'user' => $request->user(),
@@ -28,37 +32,32 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the user's profile information.
+     * Werk de profielgegevens van de gebruiker bij.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
-        $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+        // Update de basisgegevens
+        $user->username = $request->input('username');
+        $user->birthdate = $request->input('birthdate');
+        $user->about_me = $request->input('about_me');
 
-        $validated = $request->validated();
-
+        // Upload en sla de profielfoto op als deze is geüpload
         if ($request->hasFile('profile_picture')) {
             $path = $request->file('profile_picture')->store('profile_pictures', 'public');
-            $validated['profile_picture'] = $path;
+            $user->profile_picture = $path;
         }
 
-        $user->fill($validated);
+        // Sla de wijzigingen op in de database
+        $user->save();
 
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
+        // Redirect naar het profielbewerken met een succesbericht
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**
-     * Delete the user's account.
+     * Verwijder het account van de gebruiker.
      */
     public function destroy(Request $request): RedirectResponse
     {
