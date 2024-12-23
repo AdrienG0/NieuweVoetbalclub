@@ -36,7 +36,18 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/users', [UserManagementController::class, 'index'])->name('admin.users.index');
     Route::post('/admin/users/{user}/role', [UserManagementController::class, 'updateRole'])->name('admin.users.updateRole');
+
+    // Admin-acties voor nieuwsitems
+    Route::get('news/create', [NewsController::class, 'create'])->name('news.create');
+    Route::post('news', [NewsController::class, 'store'])->name('news.store');
+    Route::get('news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
+    Route::put('news/{news}', [NewsController::class, 'update'])->name('news.update');
+    Route::delete('news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
 });
+
+// Openbare routes voor nieuwsitems
+Route::get('news', [NewsController::class, 'index'])->name('news.index');
+Route::get('news/{news}', [NewsController::class, 'show'])->name('news.show');
 
 
 Route::get('/db-test', function () {
