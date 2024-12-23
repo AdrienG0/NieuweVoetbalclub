@@ -3,14 +3,17 @@
 @section('content')
 <div class="max-w-7xl mx-auto p-6 bg-white shadow-md rounded">
     <h1 class="text-3xl font-bold mb-4">Laatste Nieuwtjes</h1>
-    <!-- Knop om een nieuw item toe te voegen -->
-    <div class="mb-6">
-        <a href="{{ route('news.create') }}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-            Nieuw item toevoegen
-        </a>
-    </div>
 
-    <!-- Controleer of er nieuwsitems zijn -->
+    <!-- Alleen admins mogen deze knop zien -->
+    @if(auth()->check() && auth()->user()->role === 'admin')
+        <div class="mb-6">
+            <a href="{{ route('news.create') }}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Nieuw item toevoegen
+            </a>
+        </div>
+    @endif
+
+    <!-- Lijst met nieuwsitems -->
     @if($news->isEmpty())
         <p class="text-gray-500">Er zijn nog geen nieuwsitems beschikbaar.</p>
     @else
