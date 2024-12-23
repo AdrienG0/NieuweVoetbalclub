@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserManagementController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,8 @@ Route::get('/test-logging', function () {
     \Log::info('Test logging werkt!');
     return 'Logging getest!';
 });
+
+Route::resource('news', NewsController::class);
 
 
 require __DIR__.'/auth.php';
