@@ -11,6 +11,12 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
                 </div>
+                <!-- Knop om naar de nieuwssectie te gaan -->
+                <div class="p-6">
+                    <a href="{{ route('news.index') }}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        Ga naar Laatste Nieuwtjes
+                    </a>
+                </div>
             </div>
         </div>
     </div>
