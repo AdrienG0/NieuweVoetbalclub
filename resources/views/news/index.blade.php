@@ -4,6 +4,13 @@
 <div class="max-w-7xl mx-auto p-6 bg-white shadow-md rounded">
     <h1 class="text-3xl font-bold mb-4">Laatste Nieuwtjes</h1>
 
+    <!-- Terug naar Dashboard knop -->
+    <div class="mb-4">
+        <a href="{{ route('dashboard') }}" class="inline-block bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+            Terug naar Dashboard
+        </a>
+    </div>
+
     <!-- Alleen admins mogen deze knop zien -->
     @if(auth()->check() && auth()->user()->role === 'admin')
         <div class="mb-6">

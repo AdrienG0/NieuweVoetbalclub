@@ -14,6 +14,13 @@
                     </div>
                 @endif
 
+                <!-- Terug naar Dashboard knop -->
+                <div class="p-6 mb-4">
+                    <a href="{{ route('dashboard') }}" class="inline-block bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                        Terug naar Dashboard
+                    </a>
+                </div>
+
                 <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
