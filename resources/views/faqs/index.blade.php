@@ -39,11 +39,15 @@
                         <td class="border border-gray-300 px-4 py-2">{{ $faq->category->name }}</td>
                         @if(auth()->user() && auth()->user()->is_admin)
                             <td class="border border-gray-300 px-4 py-2">
-                                <a href="{{ route('faqs.edit', $faq->id) }}" class="text-blue-500 hover:underline">Bewerken</a>
-                                <form action="{{ route('faqs.destroy', $faq->id) }}" method="POST" class="inline">
+                            <a href="{{ route('faqs.edit', $faq->id) }}" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-center">
+                                Bewerken
+                            </a>                                
+                            <form action="{{ route('faqs.destroy', $faq->id) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-500 hover:underline ml-2">Verwijderen</button>
+                                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-center">
+                                        Verwijderen
+                                    </button>
                                 </form>
                             </td>
                         @endif
