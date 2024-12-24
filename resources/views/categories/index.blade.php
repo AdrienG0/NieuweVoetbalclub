@@ -9,6 +9,10 @@
         Nieuwe Categorie Toevoegen
     </a>
 
+    <a href="{{ route('faqs.index') }}" class="inline-block bg-gray-500 text-white px-4 py-2 rounded shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500">
+        Terug naar FAQ Beheer
+    </a>
+
     <!-- Tabel met categorieën -->
     <table class="min-w-full bg-white border-collapse border border-gray-200">
         <thead>
