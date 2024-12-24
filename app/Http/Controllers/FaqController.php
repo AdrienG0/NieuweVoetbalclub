@@ -46,11 +46,11 @@ class FaqController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Faq $faq)
+    public function edit($id)
     {
-        // Haal alle categorieën op en de geselecteerde FAQ
-        $categories = Category::all();
-        return view('faqs.edit', compact('faq', 'categories'));
+        $faq = Faq::findOrFail($id); // Zoek de FAQ op basis van het ID
+        $categories = Category::all(); // Haal alle categorieën op
+        return view('faqs.edit', compact('faq', 'categories')); // Stuur beide variabelen naar de view
     }
 
     /**
