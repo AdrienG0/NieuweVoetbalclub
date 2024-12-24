@@ -11,7 +11,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -19,7 +20,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -27,7 +28,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['name' => 'required|string|max:255']);
+        Category::create($request->all());
+        return redirect()->route('categories.index')->with('success', 'Categorie toegevoegd!');
     }
 
     /**
@@ -37,13 +40,15 @@ class CategoryController extends Controller
     {
         //
     }
+    
+    
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -51,7 +56,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(['name' => 'required|string|max:255']);
+        $category->update($request->all());
+        return redirect()->route('categories.index')->with('success', 'Categorie bijgewerkt!');
     }
 
     /**
@@ -59,6 +66,7 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index')->with('success', 'Categorie verwijderd!');
     }
 }
