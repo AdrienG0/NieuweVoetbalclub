@@ -32,15 +32,14 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        // Valideer de invoer
-        $request->validate([
+        $validated = $request->validate([
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
             'category_id' => 'required|exists:categories,id',
         ]);
-
-        // Maak een nieuwe FAQ aan
-        Faq::create($request->all());
+    
+        Faq::create($validated);
+    
         return redirect()->route('faqs.index')->with('success', 'FAQ toegevoegd!');
     }
 

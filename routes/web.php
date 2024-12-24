@@ -50,6 +50,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     // Admin-acties voor FAQ's en categorieën
     Route::resource('categories', CategoryController::class)->except(['show']);
     Route::resource('faqs', FaqController::class)->except(['index', 'show']);
+
+    Route::get('/faqs/create', [FaqController::class, 'create'])->name('faqs.create');
 });
 
 // Openbare routes voor nieuwsitems
