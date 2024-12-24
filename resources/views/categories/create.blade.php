@@ -15,5 +15,11 @@
             Opslaan
         </button>
     </form>
+
+    <div class="mt-4">
+        <a href="{{ route('faqs.index') }}" class="text-blue-500 hover:underline">
+            Terug naar FAQ
+        </a>
+    </div>
 </div>
 @endsection
