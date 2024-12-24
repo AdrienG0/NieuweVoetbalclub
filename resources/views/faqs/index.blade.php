@@ -12,7 +12,11 @@
     <!-- Nieuwe Categorie Toevoegen -->
     <a href="{{ route('categories.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-4 inline-block">
     Nieuwe Categorie Toevoegen
-</a>
+    </a>
+
+    <a href="{{ route('dashboard') }}" class="inline-block bg-gray-500 text-white px-4 py-2 rounded shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500">
+        Terug naar Dashboard
+    </a>
 
 
     <!-- Tabel met vragen en antwoorden -->

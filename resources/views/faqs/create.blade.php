@@ -3,6 +3,12 @@
 @section('content')
 <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded">
     <h1 class="text-3xl font-bold mb-6">Nieuwe FAQ Toevoegen</h1>
+    
+    <div class="mb-4">
+    <a href="{{ route('faqs.index') }}" class="inline-block bg-gray-500 text-white px-4 py-2 rounded shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500">
+        Terug naar FAQ Beheer
+    </a>
+</div>
 
     <form action="{{ route('faqs.store') }}" method="POST" class="space-y-6">
         @csrf
