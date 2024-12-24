@@ -13,9 +13,8 @@ class FaqController extends Controller
      */
     public function index()
     {
-        // Haal alle categorieën met hun gerelateerde FAQ's op
-        $categories = Category::with('faqs')->get();
-        return view('faq.index', compact('categories'));
+        $faqs = Faq::with('category')->get();
+        return view('faqs.index', compact('faqs'));
     }
 
     /**

@@ -57,7 +57,7 @@ Route::get('news', [NewsController::class, 'index'])->name('news.index');
 Route::get('news/{news}', [NewsController::class, 'show'])->name('news.show');
 
 // Openbare route voor FAQ-pagina
-Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
+Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index');
 
 // Database test route
 Route::get('/db-test', function () {

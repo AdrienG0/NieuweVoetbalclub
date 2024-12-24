@@ -17,6 +17,11 @@
                         Ga naar Laatste Nieuwtjes
                     </a>
                 </div>
+                <div class="p-6">
+                <a href="{{ route('faqs.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-4 inline-block">
+                 FAQ Beheer
+                </a>
+                </div>
             </div>
         </div>
     </div>
