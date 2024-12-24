@@ -47,4 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getIsAdminAttribute()
+    {
+        return $this->role === 'admin'; // Pas dit aan afhankelijk van je rolensysteem
+    }
 }
