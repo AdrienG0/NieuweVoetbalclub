@@ -52,6 +52,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('faqs', FaqController::class)->except(['index', 'show']);
 
     Route::get('/faqs/create', [FaqController::class, 'create'])->name('faqs.create');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 });
 
 // Openbare routes voor nieuwsitems

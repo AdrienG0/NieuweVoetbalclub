@@ -9,6 +9,12 @@
         Nieuwe Vraag Toevoegen
     </a>
 
+    <!-- Nieuwe Categorie Toevoegen -->
+    <a href="{{ route('categories.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-4 inline-block">
+    Nieuwe Categorie Toevoegen
+</a>
+
+
     <!-- Tabel met vragen en antwoorden -->
     <table class="min-w-full bg-white border-collapse border border-gray-200">
         <thead>
