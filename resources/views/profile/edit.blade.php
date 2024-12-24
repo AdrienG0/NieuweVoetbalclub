@@ -3,6 +3,12 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profiel aanpassen') }}
         </h2>
+    <!-- Terug naar Dashboard knop -->
+    <div class="p-6 mb-4">
+                    <a href="{{ route('dashboard') }}" class="inline-block bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                        Terug naar Dashboard
+                    </a>
+                </div>
     </x-slot>
 
     <div class="py-12">
@@ -14,12 +20,6 @@
                     </div>
                 @endif
 
-                <!-- Terug naar Dashboard knop -->
-                <div class="p-6 mb-4">
-                    <a href="{{ route('dashboard') }}" class="inline-block bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
-                        Terug naar Dashboard
-                    </a>
-                </div>
 
                 <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
