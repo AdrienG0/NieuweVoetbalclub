@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserManagementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
 
 // Admin-specifieke routes
 Route::middleware(['auth', 'isAdmin'])->group(function () {
+    // Admin-gebruikersbeheer
     Route::get('/admin/users', [UserManagementController::class, 'index'])->name('admin.users.index');
     Route::post('/admin/users/{user}/role', [UserManagementController::class, 'updateRole'])->name('admin.users.updateRole');
 
@@ -43,13 +46,20 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
     Route::put('news/{news}', [NewsController::class, 'update'])->name('news.update');
     Route::delete('news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
+
+    // Admin-acties voor FAQ's en categorieën
+    Route::resource('categories', CategoryController::class)->except(['show']);
+    Route::resource('faqs', FaqController::class)->except(['index', 'show']);
 });
 
 // Openbare routes voor nieuwsitems
 Route::get('news', [NewsController::class, 'index'])->name('news.index');
 Route::get('news/{news}', [NewsController::class, 'show'])->name('news.show');
 
+// Openbare route voor FAQ-pagina
+Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 
+// Database test route
 Route::get('/db-test', function () {
     try {
         \DB::connection()->getPdo();
@@ -59,12 +69,10 @@ Route::get('/db-test', function () {
     }
 });
 
+// Test logging route
 Route::get('/test-logging', function () {
     \Log::info('Test logging werkt!');
     return 'Logging getest!';
 });
-
-Route::resource('news', NewsController::class);
-
 
 require __DIR__.'/auth.php';
