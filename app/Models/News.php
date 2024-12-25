@@ -15,4 +15,9 @@ class News extends Model
         'image_path',
         'publication_date',
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

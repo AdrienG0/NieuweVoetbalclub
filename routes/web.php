@@ -90,5 +90,7 @@ Route::post('/contact', [ContactController::class, 'send'])->name('contact.send'
 
 Route::get('/users/search', [UserManagementController::class, 'search'])->name('users.search');
 
+Route::post('news/{news}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
+
 
 require __DIR__.'/auth.php';

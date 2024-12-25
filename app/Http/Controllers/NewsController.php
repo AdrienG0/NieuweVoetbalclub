@@ -69,5 +69,10 @@ class NewsController extends Controller
         $news->delete();
         return redirect()->route('news.index')->with('success', 'Nieuwsitem verwijderd!');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
 
