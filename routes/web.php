@@ -82,5 +82,7 @@ Route::get('/test-logging', function () {
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create'); // Contactpagina tonen
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store'); // Contactformulier verwerken
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+
 
 require __DIR__.'/auth.php';
