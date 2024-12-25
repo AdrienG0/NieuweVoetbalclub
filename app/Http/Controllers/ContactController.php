@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
+
+    public function index()
+    {
+        return view('contact.index');
+    }
+
     public function create()
     {
         return view('contact.create');
