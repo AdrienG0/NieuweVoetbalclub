@@ -40,6 +40,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     // Admin-gebruikersbeheer
     Route::get('/admin/users', [UserManagementController::class, 'index'])->name('admin.users.index');
     Route::post('/admin/users/{user}/role', [UserManagementController::class, 'updateRole'])->name('admin.users.updateRole');
+    Route::get('/admin/users/create', [UserManagementController::class, 'create'])->name('admin.users.create');
+    Route::post('/admin/users/store', [UserManagementController::class, 'store'])->name('admin.users.store');
 
     // Admin-acties voor nieuwsitems
     Route::get('news/create', [NewsController::class, 'create'])->name('news.create');

@@ -18,6 +18,15 @@
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
+            <!-- Admin Link -->
+            @auth
+                @if (Auth::user()->role === 'admin')
+                    <a href="{{ route('admin.users.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        Gebruikersbeheer
+                    </a>
+                @endif
+            @endauth
+
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
@@ -29,11 +38,11 @@
 
             <!-- Page Content -->
             <main>
-            @if (isset($slot))
-                {{ $slot }}
-            @else
-                @yield('content')
-            @endif
+                @if (isset($slot))
+                    {{ $slot }}
+                @else
+                    @yield('content')
+                @endif
             </main>
         </div>
     </body>
