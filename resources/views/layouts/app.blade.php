@@ -20,7 +20,7 @@
 
             <!-- Admin Link -->
             @auth
-                @if (Auth::user()->role === 'admin')
+                @if (Auth::user()->role === 'admin' && Route::currentRouteName() !== 'admin.users.index')
                     <a href="{{ route('admin.users.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                         Gebruikersbeheer
                     </a>
