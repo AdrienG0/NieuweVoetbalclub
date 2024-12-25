@@ -42,7 +42,7 @@
     <!-- Reacties lijst -->
     @forelse($news->comments as $comment)
         <div class="mb-4 p-4 border border-gray-200 rounded">
-            <p class="font-semibold">{{ $comment->user->name }}</p>
+            <p class="font-semibold">{{ $comment->user->name ?? 'Anonieme gebruiker' }}</p>
             <p class="text-gray-700">{{ $comment->content }}</p>
             <small class="text-gray-500">{{ $comment->created_at->diffForHumans() }}</small>
         </div>
@@ -52,16 +52,13 @@
 
     <!-- Reactieformulier -->
     @auth
-        <form action="{{ route('comments.store', $news) }}" method="POST" class="mt-6">
-            @csrf
-            <textarea name="content" rows="4" class="w-full border rounded p-2" placeholder="Laat een reactie achter..."></textarea>
-            @error('content')
-                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-            @enderror
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-2">
-                Reactie Plaatsen
-            </button>
-        </form>
+    <form action="{{ route('comments.store', $news) }}" method="POST">
+        @csrf
+        <textarea name="content" class="border rounded w-full p-2" placeholder="Laat een reactie achter..."></textarea>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded mt-2 hover:bg-blue-600">
+            Reactie Plaatsen
+        </button>
+    </form>
     @else
         <p class="text-gray-500 mt-4">Log in om een reactie achter te laten.</p>
     @endauth
