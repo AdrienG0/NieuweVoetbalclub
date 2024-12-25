@@ -88,5 +88,7 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 
+Route::get('/users/search', [UserManagementController::class, 'search'])->name('users.search');
+
 
 require __DIR__.'/auth.php';

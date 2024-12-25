@@ -4,6 +4,23 @@
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
+
+        <!-- Zoekbalk -->
+        <div class="flex items-center mb-4 space-x-4">
+            <form action="{{ route('users.search') }}" method="GET" class="flex items-center w-full">
+                <input
+                    type="text"
+                    name="query"
+                    class="border rounded-l px-4 py-2 w-full"
+                    placeholder="Zoek naar een gebruiker..."
+                    required
+                />
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600">
+                    Zoek
+                </button>
+            </form>
+        </div>
+        
             You're logged in!
 
             <div class="mt-4">

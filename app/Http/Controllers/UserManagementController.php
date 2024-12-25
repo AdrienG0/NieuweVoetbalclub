@@ -66,5 +66,17 @@ class UserManagementController extends Controller
 
         return redirect()->route('admin.users.index')->with('success', 'De gebruiker is succesvol verwijderd.');
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Zoek naar gebruikers op naam of e-mail
+        $users = User::where('name', 'LIKE', "%{$query}%")
+                    ->orWhere('email', 'LIKE', "%{$query}%")
+                    ->get();
+
+        return view('admin.users.search-results', compact('users', 'query'));
+    }
 }
 
