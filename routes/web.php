@@ -8,6 +8,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/questions/create', [QuestionController::class, 'create'])->name('questions.create');
+    Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
 });
 
 // Admin-specifieke routes
@@ -59,6 +62,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 
     Route::delete('/admin/users/{user}', [UserManagementController::class, 'destroy'])->name('admin.users.destroy');
+
+    Route::get('/admin/questions', [QuestionController::class, 'index'])->name('admin.questions.index');
+    Route::post('/admin/questions/{question}/approve', [QuestionController::class, 'approve'])->name('admin.questions.approve');
+    Route::delete('/admin/questions/{question}', [QuestionController::class, 'destroy'])->name('admin.questions.destroy');
 });
 
 // Openbare routes voor nieuwsitems
