@@ -21,9 +21,9 @@
     <!-- Alleen admins kunnen deze knoppen zien -->
     @if(auth()->check() && auth()->user()->role === 'admin')
         <div class="mt-6 space-x-4">
-            <a href="{{ route('news.edit', $news) }}" class="inline-block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
-                Bewerken
-            </a>
+        <a href="{{ route('news.edit', $news) }}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            Bewerken
+        </a>
             <form action="{{ route('news.destroy', $news) }}" method="POST" class="inline-block">
                 @csrf
                 @method('DELETE')
