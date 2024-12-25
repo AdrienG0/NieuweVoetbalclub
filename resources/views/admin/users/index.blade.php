@@ -15,19 +15,19 @@
     <table class="table-auto w-full border-collapse border border-gray-200">
         <thead>
             <tr>
-                <th class="border border-gray-200 px-4 py-2">Naam</th>
-                <th class="border border-gray-200 px-4 py-2">E-mail</th>
-                <th class="border border-gray-200 px-4 py-2">Rol</th>
-                <th class="border border-gray-200 px-4 py-2">Acties</th>
+                <th class="border border-gray-200 px-4 py-2 text-center">Naam</th>
+                <th class="border border-gray-200 px-4 py-2 text-center">E-mail</th>
+                <th class="border border-gray-200 px-4 py-2 text-center">Rol</th>
+                <th class="border border-gray-200 px-4 py-2 text-center">Acties</th>
             </tr>
         </thead>
         <tbody>
             @foreach($users as $user)
                 <tr>
-                    <td class="border border-gray-200 px-4 py-2">{{ $user->name }}</td>
-                    <td class="border border-gray-200 px-4 py-2">{{ $user->email }}</td>
-                    <td class="border border-gray-200 px-4 py-2">{{ ucfirst($user->role) }}</td>
-                    <td class="border border-gray-200 px-4 py-2 space-x-2">
+                    <td class="border border-gray-200 px-4 py-2 text-center align-middle">{{ $user->name }}</td>
+                    <td class="border border-gray-200 px-4 py-2 text-center align-middle">{{ $user->email }}</td>
+                    <td class="border border-gray-200 px-4 py-2 text-center align-middle">{{ ucfirst($user->role) }}</td>
+                    <td class="border border-gray-200 px-4 py-2 text-center align-middle space-x-2">
                         <!-- Rol bijwerken -->
                         <form action="{{ route('admin.users.updateRole', $user) }}" method="POST" class="inline-block">
                             @csrf
@@ -51,5 +51,12 @@
             @endforeach
         </tbody>
     </table>
+
+    <!-- Knop onderaan links -->
+    <div class="mt-4 flex justify-start">
+        <a href="{{ route('admin.users.create') }}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+            Nieuwe Gebruiker Toevoegen
+        </a>
+    </div>
 </div>
 @endsection
