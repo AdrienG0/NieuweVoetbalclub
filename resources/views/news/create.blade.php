@@ -22,6 +22,15 @@
             <input type="date" name="publication_date" id="publication_date" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
         </div>
         <div>
+            <label for="categories" class="block text-sm font-medium text-gray-700">Categorieën:</label>
+            <select name="categories[]" id="categories" multiple class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+            <small class="text-gray-500">Houd <kbd class="bg-gray-200 px-1 rounded">Ctrl</kbd> ingedrukt om meerdere categorieën te selecteren.</small>
+        </div>
+        <div>
             <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Opslaan</button>
         </div>
 
@@ -30,7 +39,6 @@
                 Terug naar Nieuws
             </a>
         </div>
-
     </form>
 </div>
 @endsection

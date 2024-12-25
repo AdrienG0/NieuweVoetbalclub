@@ -47,6 +47,19 @@
                 required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
         </div>
 
+        <!-- Categorieën -->
+        <div class="mb-4">
+            <label for="categories" class="block text-sm font-medium text-gray-700">Categorieën:</label>
+            <select name="categories[]" id="categories" multiple class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ in_array($category->id, $selectedCategories) ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+            <small class="text-gray-500">Houd <kbd class="bg-gray-200 px-1 rounded">Ctrl</kbd> ingedrukt om meerdere categorieën te selecteren.</small>
+        </div>
+
         <!-- Opslaan knop -->
         <div class="flex justify-end">
             <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition">

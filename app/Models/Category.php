@@ -15,4 +15,10 @@ class Category extends Model
     {
         return $this->hasMany(Faq::class);
     }
+
+    public function news()
+    {
+        return $this->belongsToMany(News::class, 'category_news');
+    }
+
 }

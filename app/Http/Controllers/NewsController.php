@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Category; // Zorg ervoor dat het Category-model geïmporteerd is
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -15,7 +16,8 @@ class NewsController extends Controller
 
     public function create()
     {
-        return view('news.create');
+        $categories = Category::all(); // Haal alle categorieën op
+        return view('news.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -25,6 +27,8 @@ class NewsController extends Controller
             'content' => 'required',
             'image' => 'nullable|image',
             'publication_date' => 'required|date',
+            'categories' => 'nullable|array', // Zorg ervoor dat categories een array is
+            'categories.*' => 'exists:categories,id', // Valideer dat elke categorie bestaat
         ]);
 
         $news = new News($validated);
@@ -32,6 +36,11 @@ class NewsController extends Controller
             $news->image_path = $request->file('image')->store('news_images', 'public');
         }
         $news->save();
+
+        // Koppel categorieën aan het nieuwsartikel
+        if ($request->has('categories')) {
+            $news->categories()->sync($request->categories);
+        }
 
         return redirect()->route('news.index')->with('success', 'Nieuwsitem toegevoegd!');
     }
@@ -43,7 +52,9 @@ class NewsController extends Controller
 
     public function edit(News $news)
     {
-        return view('news.edit', compact('news'));
+        $categories = Category::all(); // Haal alle categorieën op
+        $selectedCategories = $news->categories->pluck('id')->toArray(); // Haal gekoppelde categorieën op
+        return view('news.edit', compact('news', 'categories', 'selectedCategories'));
     }
 
     public function update(Request $request, News $news)
@@ -53,6 +64,8 @@ class NewsController extends Controller
             'content' => 'required',
             'image' => 'nullable|image',
             'publication_date' => 'required|date',
+            'categories' => 'nullable|array', // Zorg ervoor dat categories een array is
+            'categories.*' => 'exists:categories,id', // Valideer dat elke categorie bestaat
         ]);
 
         $news->fill($validated);
@@ -60,6 +73,11 @@ class NewsController extends Controller
             $news->image_path = $request->file('image')->store('news_images', 'public');
         }
         $news->save();
+
+        // Update categorieën voor het nieuwsartikel
+        if ($request->has('categories')) {
+            $news->categories()->sync($request->categories);
+        }
 
         return redirect()->route('news.index')->with('success', 'Nieuwsitem bijgewerkt!');
     }
@@ -75,4 +93,3 @@ class NewsController extends Controller
         return $this->hasMany(Comment::class);
     }
 }
-
