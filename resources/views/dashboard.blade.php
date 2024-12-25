@@ -8,13 +8,13 @@
 
             <div class="mt-4">
                 <a href="{{ route('news.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                    Ga naar Laatste Nieuwtjes
+                    Laatste Nieuwtjes
                 </a>
             </div>
 
             <div class="mt-4">
                 <a href="{{ route('faqs.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                    FAQ Beheer
+                    FAQ-Pagina
                 </a>
             </div>
 
