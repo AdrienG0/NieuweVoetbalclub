@@ -14,3 +14,12 @@
 .btn-save:hover {
     background-color: #0056b3;
 }
+
+body {
+    background-image: url('/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
