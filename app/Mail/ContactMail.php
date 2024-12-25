@@ -13,13 +13,20 @@ class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $details; // Maak een publieke eigenschap voor de details
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($details)
+    {
+        $this->details = $details; // Wijs de doorgegeven details toe
+    }
+
+    public function build()
     {
         return $this->subject('Nieuw contactformulierbericht')
-                ->view('emails.contact');
+                    ->view('emails.contact'); // Zorg ervoor dat deze view bestaat
     }
 
     /**
@@ -38,7 +45,7 @@ class ContactMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.contact', // Pas de view aan naar het juiste pad
         );
     }
 
@@ -52,3 +59,4 @@ class ContactMail extends Mailable
         return [];
     }
 }
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
 
 
 class ContactController extends Controller
@@ -44,15 +45,15 @@ class ContactController extends Controller
             'email' => 'required|email',
             'message' => 'required|string',
         ]);
-
+    
         $details = [
             'name' => $request->name,
             'email' => $request->email,
             'message' => $request->message,
         ];
-
-        \Mail::to('admin@voetbalclub.com')->send(new \App\Mail\ContactMail($details));
-
-        return back()->with('success', 'Uw bericht is succesvol verzonden!');
+    
+        Mail::to('admin@example.com')->send(new ContactMail($details)); // Details doorgeven
+    
+        return redirect()->route('contact.index')->with('success', 'Uw bericht is succesvol verzonden!');
     }
 }
