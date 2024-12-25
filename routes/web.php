@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,5 +78,8 @@ Route::get('/test-logging', function () {
     \Log::info('Test logging werkt!');
     return 'Logging getest!';
 });
+
+Route::get('/contact', [ContactController::class, 'create'])->name('contact.create'); // Contactpagina tonen
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store'); // Contactformulier verwerken
 
 require __DIR__.'/auth.php';
