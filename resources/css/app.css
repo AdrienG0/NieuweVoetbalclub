@@ -23,3 +23,16 @@ body {
     background-repeat: no-repeat;
 }
 
+button.bg-red-500 {
+    background-color: #f56565;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+}
+
+button.bg-red-500:hover {
+    background-color: #e53e3e;
+}
+
+

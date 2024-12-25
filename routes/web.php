@@ -56,6 +56,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('/faqs/create', [FaqController::class, 'create'])->name('faqs.create');
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+
+    Route::delete('/admin/users/{user}', [UserManagementController::class, 'destroy'])->name('admin.users.destroy');
 });
 
 // Openbare routes voor nieuwsitems

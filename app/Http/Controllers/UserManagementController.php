@@ -53,5 +53,16 @@ class UserManagementController extends Controller
 
         return redirect()->route('admin.users.index')->with('success', 'Nieuwe gebruiker toegevoegd!');
     }
+
+    public function destroy(User $user)
+    {
+        if ($user->id === auth()->id()) {
+            return redirect()->route('admin.users.index')->with('error', 'Je kunt je eigen account niet verwijderen.');
+        }
+
+        $user->delete();
+
+        return redirect()->route('admin.users.index')->with('success', 'De gebruiker is succesvol verwijderd.');
+    }
 }
 
