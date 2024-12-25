@@ -17,12 +17,5 @@
         <div class="flex justify-between">
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Verzenden</button>
         </div>
-
-        <!-- Backbutton -->
-        <div class="mt-4">
-            <a href="{{ route('dashboard') }}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
-                Terug naar Dashboard
-            </a>
-        </div>
     </form>
 </div>
