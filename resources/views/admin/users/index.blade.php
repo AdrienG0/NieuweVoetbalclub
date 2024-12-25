@@ -38,10 +38,10 @@
                         </form>
 
                         <!-- Gebruiker verwijderen -->
-                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="inline-block">
+                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline-block">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
                                 onclick="return confirm('Weet je zeker dat je deze gebruiker wilt verwijderen?')">
                                 Verwijderen
                             </button>

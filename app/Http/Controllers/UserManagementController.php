@@ -56,10 +56,12 @@ class UserManagementController extends Controller
 
     public function destroy(User $user)
     {
+        // Zorg ervoor dat de admin zijn eigen account niet kan verwijderen
         if ($user->id === auth()->id()) {
             return redirect()->route('admin.users.index')->with('error', 'Je kunt je eigen account niet verwijderen.');
         }
 
+        // Verwijder de gebruiker
         $user->delete();
 
         return redirect()->route('admin.users.index')->with('success', 'De gebruiker is succesvol verwijderd.');
