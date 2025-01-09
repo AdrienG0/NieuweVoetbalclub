@@ -37,6 +37,7 @@ Dit project is een dynamische website gebouwd met Laravel 11, ontworpen om te vo
 5. Contact pagina
    - Bezoekers kunnen een contactformulier invullen.
    - Admins ontvangen een e-mail met de inhoud van het formulier.
+   - Hun mails kunnen ze zien op de site Mailtrap --> https://mailtrap.io/
 
 
 ### Technische vereisten
@@ -114,7 +115,20 @@ Bronvermelding
 - Laravel documentatie: [https://laravel.com/docs].
 - Tutorials en voorbeelden van officiële Laravel bronnen.
 - ChatGPT voor style, ideëen en README-file.
+- Mailtrap.io gebruikt om mails te kunnen bekijken en ontvangen. (zie onderaan hoe het gebeurt)
 
 Belangrijke opmerkingen
 - Alle gebruikte code en implementaties zijn zorgvuldig begrepen en aangepast aan de projectvereisten.
 - Voor eventuele vragen of problemen, neem contact op via de GitHub repository.
+
+
+Intstellingen voor e-mailconfiguratie opgeslagen in .env file:
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=e25a2d9cf7dd19
+MAIL_PASSWORD=93145d00d31d93
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="no-reply@voetbalclub.com"
+MAIL_FROM_NAME="${APP_NAME}"
