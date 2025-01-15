@@ -1,6 +1,6 @@
 # NieuweVoetbalclub Website
 
-Dit project is een dynamische website gebouwd met Laravel 11, ontworpen om te voldoen aan de eisen van een informatieve en data-gedreven webtoepassing. Het biedt gebruikersfunctionaliteiten zoals inloggen, profielbeheer, nieuwsbeheer, een FAQ-sectie en een contactpagina.
+Dit project is een dynamische website gebouwd met Laravel, ontworpen om te voldoen aan de eisen van een informatieve en data-gedreven webtoepassing. Het biedt gebruikersfunctionaliteiten zoals inloggen, profielbeheer, nieuwsbeheer, een FAQ-sectie en een contactpagina.
 
 ## Projectvereisten
 
@@ -117,12 +117,8 @@ Bronvermelding
 - ChatGPT voor style, ideëen en README-file.
 - Mailtrap.io gebruikt om mails te kunnen bekijken en ontvangen. (zie onderaan hoe het gebeurt)
 
-Belangrijke opmerkingen
-- Alle gebruikte code en implementaties zijn zorgvuldig begrepen en aangepast aan de projectvereisten.
-- Voor eventuele vragen of problemen, neem contact op via de GitHub repository.
 
-
-Intstellingen voor e-mailconfiguratie opgeslagen in .env file:
+Instellingen voor e-mailconfiguratie opgeslagen in .env file:
 
 MAIL_MAILER=smtp
 MAIL_HOST=sandbox.smtp.mailtrap.io
