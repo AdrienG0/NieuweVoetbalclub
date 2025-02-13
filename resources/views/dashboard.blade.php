@@ -41,6 +41,13 @@
                 </a>
             </div>
 
+            <div class="mt-4">
+                <a href="{{ route('profile.show', auth()->user()) }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Mijn Profiel
+                </a>
+            </div>
+
+
             @can('isAdmin')
             <div class="mt-4">
                 <a href="{{ route('admin.users.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">

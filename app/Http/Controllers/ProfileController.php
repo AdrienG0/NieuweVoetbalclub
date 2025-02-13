@@ -11,9 +11,6 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -21,25 +18,35 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function show(Request $request): View
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return view('profile.show', [
+            'user' => $request->user(),
+        ]);
     }
 
-    /**
-     * Delete the user's account.
-     */
+    public function update(ProfileUpdateRequest $request): RedirectResponse
+    {
+        dd($request->all());
+
+
+        $user = $request->user();
+        $user->fill($request->validated());
+
+        if ($request->hasFile('profile_picture')) {
+            if ($user->profile_picture) {
+                Storage::delete('public/' . $user->profile_picture);
+            }
+
+            $user->profile_picture = $request->file('profile_picture')->store('profile_pictures', 'public');
+        }
+
+        $user->save();
+
+        return redirect()->route('profile.show')->with('status', 'Profiel succesvol bijgewerkt!');
+    }
+
+
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
