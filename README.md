@@ -85,6 +85,7 @@ Dit project is een dynamische website gebouwd met Laravel, ontworpen om te voldo
 
 1. Gebruikers kunnen een comment achterlaten op een nieuwtje.
 2. Admins kunnen categorieën linken met nieuwsItems.
+3. Gebruikers kunnen andere gebruikers van de site opzoeken vie een zoekbalk.
 
 **//**
 
